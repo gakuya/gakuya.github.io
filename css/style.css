@@ -1,31 +1,357 @@
-body {
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
+@charset "UTF-8";
+/* ==========================================================
+   gakuya｜萩原 学
+   フリーランス Web・コンテンツディレクター
+   ========================================================== */
+
+/* ===== カラー変数 ===== */
+:root{
+  --red:#e8363d;
+  --red-light:#f4666b;
+  --amber:#f5ae1a;
+  --ink:#313333;
+  --sub:#5f6668;
+  --bg:#f6f7f8;
+  --card:#ffffff;
+  --shadow:0 8px 24px rgba(49,51,51,.08);
+  --shadow-hover:0 14px 32px rgba(232,54,61,.22);
+  --radius:18px;
 }
 
-.wrapper {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;}
+a{color:inherit;}
+
+.container{
+  width:100%;
+  max-width:960px;
+  margin:0 auto;
+  padding:0 20px;
 }
 
-.contents {
-    margin: 0 auto;
+/* ===== ヒーロー ===== */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(232,54,61,.18), transparent 55%),
+    radial-gradient(circle at 88% 10%, rgba(245,174,26,.20), transparent 55%),
+    linear-gradient(180deg,#ffffff 0%, #f6f7f8 100%);
+  padding:56px 0 56px;
+  text-align:center;
+}
+.hero-logo{
+  display:block;
+  width:clamp(112px,20vw,150px);
+  height:auto;
+  margin:0 auto 22px;
+  animation:logoIn .8s cubic-bezier(.2,.8,.25,1) both;
+}
+@keyframes logoIn{
+  from{opacity:0;transform:translateY(-10px) scale(.94);}
+  to{opacity:1;transform:none;}
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-70px;
+  bottom:-90px;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(232,54,61,.10);
+}
+.badge{
+  display:inline-block;
+  background:#fff;
+  color:var(--red);
+  border:1px solid rgba(232,54,61,.35);
+  border-radius:999px;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1.6;
+  padding:6px 18px;
+  box-shadow:var(--shadow);
+}
+@media (max-width:420px){
+  .badge{font-size:.74rem;padding:6px 14px;}
+}
+.hero h1{
+  font-size:clamp(2rem,6vw,2.9rem);
+  font-weight:900;
+  margin:18px 0 6px;
+  letter-spacing:.06em;
+}
+.hero .role{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--red);
+  margin:0 0 18px;
+  letter-spacing:.04em;
+}
+.hero .catch{
+  max-width:640px;
+  margin:0 auto;
+  font-size:clamp(1rem,3.4vw,1.15rem);
+  font-weight:500;
+  color:var(--sub);
+}
+.hero .catch strong{
+  color:var(--ink);
+  background:linear-gradient(transparent 62%, rgba(232,54,61,.28) 62%);
 }
 
-#gakuyalogo {
-    margin: 1em 0;
-    text-align: center;
+/* ===== ナビ ===== */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(49,51,51,.07);
+}
+.nav ul{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px 10px;
+  list-style:none;
+  margin:0;
+  padding:12px 16px;
+}
+.nav a{
+  display:block;
+  text-decoration:none;
+  font-size:.9rem;
+  font-weight:700;
+  color:var(--sub);
+  padding:7px 14px;
+  border-radius:999px;
+  transition:transform .2s ease, background-color .2s ease, color .2s ease;
+}
+.nav a:hover,.nav a:focus-visible{
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-2px) scale(1.04);
 }
 
-#introduction {
-    padding: 0 2em;
-    margin-bottom: 4em;
-    text-align: center;
+/* ===== セクション共通 ===== */
+section{padding:60px 0;}
+.section-title{
+  font-size:1.4rem;
+  font-weight:900;
+  margin:0 0 28px;
+  text-align:center;
+  letter-spacing:.06em;
+}
+.section-title::after{
+  content:"";
+  display:block;
+  width:52px;
+  height:5px;
+  margin:12px auto 0;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--red),var(--amber));
 }
 
-#twitter {
-    text-align: center;
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+.lead{
+  margin:0;
+  font-size:1rem;
+  color:var(--sub);
+}
+
+/* ===== 得意分野 ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+@media (max-width:600px){
+  .grid{grid-template-columns:1fr;}
+}
+.skill{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:24px 22px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.skill:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-hover);
+}
+.skill .num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--red),var(--red-light));
+  color:#fff;
+  font-weight:900;
+  font-size:.95rem;
+  margin-bottom:12px;
+}
+.skill:nth-child(even) .num{
+  background:linear-gradient(135deg,var(--amber),#ffcf66);
+}
+.skill p{
+  margin:0;
+  font-weight:700;
+  font-size:1rem;
+}
+
+/* ===== 実績 ===== */
+.works{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+.works li{
+  background:var(--card);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:16px 20px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 14px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.works li:hover{
+  transform:translateX(4px);
+  box-shadow:var(--shadow-hover);
+}
+.tag{
+  flex:0 0 auto;
+  font-size:.8rem;
+  font-weight:700;
+  color:#fff;
+  background:var(--amber);
+  border-radius:999px;
+  padding:4px 12px;
+  white-space:nowrap;
+}
+.works li:nth-child(odd) .tag{background:var(--red);}
+.works li span.text{
+  font-size:.97rem;
+  color:var(--sub);
+  font-weight:500;
+}
+
+/* ===== お問い合わせ ===== */
+.contact{
+  text-align:center;
+}
+.contact .card{
+  background:linear-gradient(135deg,#fff 0%, #fff5f5 100%);
+}
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  background:linear-gradient(135deg,var(--red),var(--red-light));
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1rem;
+  padding:14px 34px;
+  border-radius:999px;
+  box-shadow:0 8px 20px rgba(232,54,61,.32);
+  transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.btn:hover,.btn:focus-visible{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 14px 28px rgba(232,54,61,.42);
+  filter:saturate(1.1);
+}
+
+/* ===== SNS ===== */
+.sns-section{
+  padding-top:0;
+}
+.sns-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:60px;
+  height:60px;
+  color:var(--ink);
+  background:#fff;
+  border:2px solid rgba(49,51,51,.12);
+  border-radius:50%;
+  box-shadow:var(--shadow);
+  transition:transform .22s ease, background-color .22s ease, color .22s ease, border-color .22s ease;
+}
+.sns-link svg{
+  width:24px;
+  height:24px;
+  fill:currentColor;
+}
+.sns-link:hover,.sns-link:focus-visible{
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#fff;
+  transform:translateY(-3px) scale(1.08);
+}
+
+/* ===== フッター ===== */
+footer{
+  background:#fff;
+  border-top:1px solid rgba(49,51,51,.07);
+  padding:30px 0;
+  text-align:center;
+}
+.footer-logo{
+  width:64px;
+  height:auto;
+  margin:0 auto 12px;
+  display:block;
+  opacity:.9;
+}
+footer p{
+  margin:0;
+  font-size:.85rem;
+  color:var(--sub);
+}
+
+/* ===== 出現アニメーション ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;transition:none;}
+  .hero-logo{animation:none;}
+}
+
+@media (max-width:600px){
+  .hero{padding:40px 0 44px;}
+  section{padding:46px 0;}
+  .card{padding:22px;}
+  .nav a{font-size:.84rem;padding:6px 11px;}
 }
