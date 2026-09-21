@@ -83,24 +83,14 @@ a{color:inherit;}
   padding:6px 18px;
   box-shadow:var(--shadow);
 }
-@media (max-width:420px){
-  .badge{font-size:.74rem;padding:6px 14px;}
-}
 .hero h1{
   font-size:clamp(2rem,6vw,2.9rem);
   font-weight:900;
-  margin:18px 0 6px;
+  margin:18px 0 14px;
   letter-spacing:.06em;
 }
-.hero .role{
-  font-size:1rem;
-  font-weight:700;
-  color:var(--red);
-  margin:0 0 18px;
-  letter-spacing:.04em;
-}
 .hero .catch{
-  max-width:640px;
+  max-width:680px;
   margin:0 auto;
   font-size:clamp(1rem,3.4vw,1.15rem);
   font-weight:500;
@@ -175,6 +165,9 @@ section{padding:60px 0;}
   font-size:1rem;
   color:var(--sub);
 }
+.lead + .lead{
+  margin-top:1em;
+}
 
 /* ===== 得意分野 ===== */
 .grid{
@@ -196,21 +189,30 @@ section{padding:60px 0;}
   transform:translateY(-5px);
   box-shadow:var(--shadow-hover);
 }
-.skill .num{
+.skill-icon{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:34px;
-  height:34px;
-  border-radius:12px;
+  width:46px;
+  height:46px;
+  border-radius:14px;
   background:linear-gradient(135deg,var(--red),var(--red-light));
   color:#fff;
-  font-weight:900;
-  font-size:.95rem;
-  margin-bottom:12px;
+  margin-bottom:14px;
+  box-shadow:0 6px 14px rgba(232,54,61,.28);
+  transition:transform .25s ease;
 }
-.skill:nth-child(even) .num{
+.skill-icon svg{
+  width:24px;
+  height:24px;
+  fill:currentColor;
+}
+.skill:nth-child(even) .skill-icon{
   background:linear-gradient(135deg,var(--amber),#ffcf66);
+  box-shadow:0 6px 14px rgba(245,174,26,.30);
+}
+.skill:hover .skill-icon{
+  transform:scale(1.1) rotate(-4deg);
 }
 .skill p{
   margin:0;
